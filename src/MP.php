@@ -6,7 +6,7 @@ use Exception;
  * MercadoPago Integration Library
  * Access MercadoPago for payments integration
  *
- * @author hcasatti
+ * @author Olvis Quintana
  *
  */
 

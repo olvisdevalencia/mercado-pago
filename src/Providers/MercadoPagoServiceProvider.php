@@ -6,7 +6,7 @@ use olvisdevalencia\MercadoPago\MP;
 class MercadoPagoServiceProvider extends ServiceProvider
 {
 
-	protected $mp_app_id;
+		protected $mp_app_id;
     protected $mp_app_secret;
     protected $mp_app_access_token;
 

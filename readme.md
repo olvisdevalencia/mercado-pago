@@ -64,8 +64,7 @@ namespace App\Http\Controllers;
 use MP;
 use MercadoPagoException;
 use Illuminate\Http\Request;
-use Teatrix\Http\Controllers\Controller;
-use Dingo\Api\Http\Response;
+use App\Http\Controllers\Controller;
 
 class MercadoPagoController extends Controller {
 
@@ -96,9 +95,6 @@ class MercadoPagoController extends Controller {
        	    return $e->getMessage();
 
        	} catch (\Exception $e){
-
-       	    print_r(json_decode($e->getMessage()));
-
 
        	    return response()->json($e->getMessage());
        	}
