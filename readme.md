@@ -8,9 +8,9 @@
 <a name="install"></a>
 ### Instalar
 
-`composer require livepixel/mercado-pago`
+`composer require olvisdevalencia/mercado-pago`
 
-No seu arquivo `config/app.php` adicione o seguinte trecho de código:
+En su archivo `config/app.php` agregue el siguiente código:
 
 ```php
 'providers' => [
@@ -19,28 +19,28 @@ No seu arquivo `config/app.php` adicione o seguinte trecho de código:
      * Laravel Framework Service Providers...
      */
 
-    'LivePixel\MercadoPago\Providers\MercadoPagoServiceProvider',
+    'olvisdevalencia\MercadoPago\Providers\MercadoPagoServiceProvider',
 ],
-``` 
+```
 
-Você também pode criar um `alias` com o trecho de código:
+También puede crear un `alias` con el siguiente código:
 
 ```php
 'aliases' => [
-	// Outros alias 
+	// otros alias
 
-    'MP' => 'LivePixel\MercadoPago\Facades\MP',
+    'MP' => 'olvisdevalencia\MercadoPago\Facades\MP',
 ]
 ```
 
 <a name="config"></a>
 ### Configurando
 
-Antes de começar a usar vamos publicar o arquivo de configuração. Na pasta do seu projeto Laravel, execute o seguinte comando artisan:
+Antes de empezar a usar vamos a publicar el archivo de configuración. En la carpeta de su proyecto Laravel, ejecute el siguiente comando artisan:
 
 `php artisan vendor:publish`
 
-O comando acima irá gerar um arquivo `config/mercadopago.php`. Neste arquivo você deve adicionar seu App Id e App Secret. Para saber qual é o seu acesse o [site do Mercado Pago](https://www.mercadopago.com/mlb/ferramentas/aplicacoes)
+El comando anterior generará un archivo `config / mercadopago.php`. En este archivo debe agregar su App Id y App Secret. Para saber cuál es su acceso a [sitio de Mercado Pago](https://www.mercadopago.com/mla/herramientas/aplicaciones)
 
 ```php
 return [
@@ -49,12 +49,12 @@ return [
 ];
 ```
 
-Você também pode configurar adicionando as chaves `MP_APP_ID` e `MP_APP_SECRET` em seu arquivo `.env` (recomendado).
+También puede configurar añadiendo las claves `MP_APP_ID` ​​y` MP_APP_SECRET` en su archivo `.env` (recomendado).
 
 <a name="how-to"></a>
 ### Como usar
 
-Neste exemplo, vamos criar uma preferência de pagamento e depois redirecionar o usuário para realizar o pagamento no Mercado Pago.
+En este ejemplo, vamos a crear una preferencia de pago y luego redirigir al usuario para realizar el pago en el Mercado Pago.
 
 ```php
 <?php
@@ -99,6 +99,6 @@ class HomeController extends Controller
 ```
 
 <a name="info"></a>
-### Mais informações
+### Mas información
 
-Para mais informações acesse o site do [Mercado Pago para desenvolvedores](https://developers.mercadopago.com/) e também o [repositório do SDK oficial](https://github.com/mercadopago/sdk-php)
+Para más información visite el sitio web [Mercado Pago para desarrolladrores](https://developers.mercadopago.com/) y tambien el [repositório SDK oficial](https://github.com/mercadopago/sdk-php)

@@ -1,4 +1,4 @@
-<?php namespace LivePixel\MercadoPago;
+<?php namespace olvisdevalencia\MercadoPago;
 
 use Exception;
 
@@ -83,6 +83,6 @@ class MPRestClient {
     }
 
     public static function delete($uri, $content_type = "application/json") {
-        return self::exec("DELETE", $uri, $null, $content_type);
+        return self::exec("DELETE", $uri, null, $content_type);
     }
 }
