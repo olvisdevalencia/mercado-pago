@@ -1,4 +1,4 @@
-<?php namespace Livepixel\MercadoPago\Facades;
+<?php namespace olvisdevalencia\MercadoPago\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

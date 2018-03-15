@@ -3,7 +3,7 @@
 * [Instalar](#install)
 * [Configurando](#config)
 * [Como usar](#how-to)
-* [Mais informações](#info)
+* [Mas información](#info)
 
 <a name="install"></a>
 ### Instalar
@@ -23,7 +23,7 @@ En su archivo `config/app.php` agregue el siguiente código:
 ],
 ```
 
-También puede crear un `alias` con el siguiente código:
+También crear un `alias` con el siguiente código:
 
 ```php
 'aliases' => [
@@ -49,7 +49,7 @@ return [
 ];
 ```
 
-También puede configurar añadiendo las claves `MP_APP_ID` ​​y` MP_APP_SECRET` en su archivo `.env` (recomendado).
+También debe configurar añadiendo las claves `MP_APP_ID` ​​y` MP_APP_SECRET` en su archivo `.env` (recomendado).
 
 <a name="how-to"></a>
 ### Como usar
@@ -61,39 +61,48 @@ En este ejemplo, vamos a crear una preferencia de pago y luego redirigir al usua
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Exception;
 use MP;
+use MercadoPagoException;
+use Illuminate\Http\Request;
+use Teatrix\Http\Controllers\Controller;
+use Dingo\Api\Http\Response;
 
-class HomeController extends Controller
-{
+class MercadoPagoController extends Controller {
+
+
     /**
-     * Display a listing of the resource.
      *
-     * @return Response
+     * Method to create a customer on mercadopago
+     * @param  Request
+     * @return object
      */
-    public function index()
-    {
-        $preference_data = array (
-            "items" => array (
-                array (
-                    "title" => "Test2",
-                    "quantity" => 1,
-                    "currency_id" => "BRL",
-                    "unit_price" => 10.41
-                )
-            )
-        );
+    public function createCustomer(Request $request) {
 
-        try {
-            $preference = MP::create_preference($preference_data);
-            return redirect()->to($preference['response']['init_point']);
-        } catch (Exception $e){
-            dd($e->getMessage());
-        }
+       	try {
+
+            $data = $request;
+
+            $customer_data = [
+              'email'       => $data->email, #jhondoe@gmail.com
+              'first_name'  => $data->first_name # Jhon Doe
+            ];
+
+       	    $customer = MP::post("/v1/customers", $customer_data);
+
+            return $customer;
+
+       	} catch(MercadoPagoException $e) {
+
+       	    return $e->getMessage();
+
+       	} catch (\Exception $e){
+
+       	    print_r(json_decode($e->getMessage()));
+
+
+       	    return response()->json($e->getMessage());
+       	}
+
     }
 }
 ```

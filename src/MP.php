@@ -1,11 +1,11 @@
-<?php namespace LivePixel\MercadoPago;
+<?php namespace olvisdevalencia\MercadoPago;
 
 use Exception;
 
 /**
  * MercadoPago Integration Library
  * Access MercadoPago for payments integration
- * 
+ *
  * @author hcasatti
  *
  */
@@ -21,7 +21,7 @@ class MP {
     private $sandbox = FALSE;
 
     function __construct() {
-        $i = func_num_args(); 
+        $i = func_num_args();
 
         if ($i > 2 || $i < 1) {
             throw new Exception("Invalid arguments. Use CLIENT_ID and CLIENT SECRET, or ACCESS_TOKEN");
@@ -79,7 +79,7 @@ class MP {
         $access_token = $this->get_access_token();
 
         $uri_prefix = $this->sandbox ? "/sandbox" : "";
-            
+
         $payment_info = MPRestClient::get($uri_prefix."/collections/notifications/" . $id . "?access_token=" . $access_token);
         return $payment_info;
     }
@@ -91,7 +91,7 @@ class MP {
      * Get information for specific authorized payment
      * @param id
      * @return array(json)
-    */    
+    */
     public function get_authorized_payment($id) {
         $access_token = $this->get_access_token();
 
@@ -163,7 +163,7 @@ class MP {
         $filters = $this->build_query($filters);
 
         $uri_prefix = $this->sandbox ? "/sandbox" : "";
-            
+
         $collection_result = MPRestClient::get($uri_prefix."/collections/search?" . $filters . "&access_token=" . $access_token);
         return $collection_result;
     }
@@ -233,8 +233,8 @@ class MP {
      * Update a preapproval payment
      * @param string $preapproval_payment, $id
      * @return array(json)
-     */ 
-    
+     */
+
     public function update_preapproval_payment($id, $preapproval_payment) {
         $access_token = $this->get_access_token();
 
@@ -261,7 +261,7 @@ class MP {
 
         if (count($params) > 0) {
             $uri .= (strpos($uri, "?") === false) ? "?" : "&";
-            $uri .= $this->build_query($params);            
+            $uri .= $this->build_query($params);
         }
 
         $result = MPRestClient::get($uri);
@@ -282,7 +282,7 @@ class MP {
 
         if (count($params) > 0) {
             $uri .= (strpos($uri, "?") === false) ? "?" : "&";
-            $uri .= $this->build_query($params);            
+            $uri .= $this->build_query($params);
         }
 
         $result = MPRestClient::post($uri, $data);
@@ -303,7 +303,7 @@ class MP {
 
         if (count($params) > 0) {
             $uri .= (strpos($uri, "?") === false) ? "?" : "&";
-            $uri .= $this->build_query($params);            
+            $uri .= $this->build_query($params);
         }
 
         $result = MPRestClient::put($uri, $data);
